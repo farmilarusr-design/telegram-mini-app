@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Мой Mini App</title>
@@ -17,24 +16,45 @@
 
     <div class="container">
 
-        <h1>Мой Mini App</h1>
+        <div class="profile-header">
+            <div class="avatar" id="avatar">?</div>
+
+            <div class="user-info">
+                <h1 id="name">Загрузка...</h1>
+                <p id="username">@username</p>
+            </div>
+        </div>
+
+        <div class="welcome">
+            <h2>👋 Добро пожаловать!</h2>
+            <p>Это твой Telegram Mini App</p>
+        </div>
 
         <div class="card" onclick="openProfile()">
             <div class="icon">👤</div>
-
             <div>
                 <h2>Профиль</h2>
-                <p>Посмотреть свой профиль</p>
+                <p>Информация о тебе</p>
             </div>
+            <div class="arrow">›</div>
         </div>
 
         <div class="card" onclick="openSettings()">
             <div class="icon">⚙️</div>
-
             <div>
                 <h2>Настройки</h2>
-                <p>Настроить приложение</p>
+                <p>Настройки приложения</p>
             </div>
+            <div class="arrow">›</div>
+        </div>
+
+        <div class="card" onclick="openHelp()">
+            <div class="icon">❓</div>
+            <div>
+                <h2>Помощь</h2>
+                <p>Если что-то не работает</p>
+            </div>
+            <div class="arrow">›</div>
         </div>
 
     </div>
@@ -43,10 +63,4 @@
 
 </body>
 
-</html>
-</body>
-<script src="script.js"></script>
-    <script src="script.js"></script>
-
-</body>
 </html>
