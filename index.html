@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -16,45 +17,94 @@
 
     <div class="container">
 
-        <div class="profile-header">
-            <div class="avatar" id="avatar">?</div>
+        <!-- Главная страница -->
+        <div id="homePage">
 
-            <div class="user-info">
-                <h1 id="name">Загрузка...</h1>
-                <p id="username">@username</p>
+            <div class="profile-header">
+                <div class="avatar" id="avatar">?</div>
+
+                <div class="user-info">
+                    <h1 id="name">Загрузка...</h1>
+                    <p id="username">@username</p>
+                </div>
             </div>
+
+            <div class="welcome">
+                <h2>👋 Добро пожаловать!</h2>
+                <p>Это твой Telegram Mini App</p>
+            </div>
+
+            <div class="card" onclick="openProfile()">
+                <div class="icon">👤</div>
+
+                <div>
+                    <h2>Профиль</h2>
+                    <p>Информация о тебе</p>
+                </div>
+
+                <div class="arrow">›</div>
+            </div>
+
+            <div class="card" onclick="openSettings()">
+                <div class="icon">⚙️</div>
+
+                <div>
+                    <h2>Настройки</h2>
+                    <p>Настройки приложения</p>
+                </div>
+
+                <div class="arrow">›</div>
+            </div>
+
+            <div class="card" onclick="openHelp()">
+                <div class="icon">❓</div>
+
+                <div>
+                    <h2>Помощь</h2>
+                    <p>Если что-то не работает</p>
+                </div>
+
+                <div class="arrow">›</div>
+            </div>
+
         </div>
 
-        <div class="welcome">
-            <h2>👋 Добро пожаловать!</h2>
-            <p>Это твой Telegram Mini App</p>
-        </div>
 
-        <div class="card" onclick="openProfile()">
-            <div class="icon">👤</div>
-            <div>
-                <h2>Профиль</h2>
-                <p>Информация о тебе</p>
-            </div>
-            <div class="arrow">›</div>
-        </div>
+        <!-- Страница профиля -->
+        <div id="profilePage" style="display: none;">
 
-        <div class="card" onclick="openSettings()">
-            <div class="icon">⚙️</div>
-            <div>
-                <h2>Настройки</h2>
-                <p>Настройки приложения</p>
-            </div>
-            <div class="arrow">›</div>
-        </div>
+            <div class="profile-header">
+                <div class="avatar" id="profileAvatar">?</div>
 
-        <div class="card" onclick="openHelp()">
-            <div class="icon">❓</div>
-            <div>
-                <h2>Помощь</h2>
-                <p>Если что-то не работает</p>
+                <div class="user-info">
+                    <h1 id="profileName">Пользователь</h1>
+                    <p id="profileUsername">@username</p>
+                </div>
             </div>
-            <div class="arrow">›</div>
+
+            <div class="welcome">
+                <h2>👤 Профиль</h2>
+                <p>Информация о твоём Telegram аккаунте</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🆔</div>
+
+                <div>
+                    <h2>Telegram ID</h2>
+                    <p id="userId">Загрузка...</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="backHome()">
+                <div class="icon">←</div>
+
+                <div>
+                    <h2>Назад</h2>
+                    <p>Вернуться на главный экран</p>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -64,3 +114,4 @@
 </body>
 
 </html>
+```
