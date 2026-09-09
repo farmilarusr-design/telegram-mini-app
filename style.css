@@ -1,134 +1,920 @@
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
     margin: 0;
     padding: 0;
+    min-height: 100%;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: Arial, sans-serif;
+
     background: var(--tg-theme-bg-color, #17212b);
     color: var(--tg-theme-text-color, #ffffff);
-    min-height: 100vh;
+
+    overflow-x: hidden;
 }
 
-.container {
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================
+   ОСНОВНОЕ ПРИЛОЖЕНИЕ
+   ========================= */
+
+.app {
     width: 100%;
-    max-width: 520px;
+    max-width: 600px;
+    min-height: 100vh;
+
     margin: 0 auto;
-    padding: 20px 16px 30px;
+
+    padding: 16px;
 }
 
-.profile-header {
+
+/* =========================
+   ВЕРХНЯЯ ПАНЕЛЬ
+   ========================= */
+
+.top-bar {
+    width: 100%;
+
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 24px;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.user-block {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
 }
 
 .avatar {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
     border-radius: 50%;
-    background: var(--tg-theme-button-color, #2ea6ff);
-    color: #fff;
+
+    background: #4f91d0;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
-    font-weight: 600;
+
+    color: white;
+
+    font-size: 21px;
+    font-weight: bold;
+
     overflow: hidden;
-    flex-shrink: 0;
 }
 
 .avatar img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
 }
 
-.user-info h1 {
-    font-size: 23px;
+.user-data {
+    min-width: 0;
+}
+
+.user-name {
+    max-width: 180px;
+
+    font-size: 17px;
     font-weight: 700;
-    margin-bottom: 4px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.user-info p {
-    font-size: 14px;
-    opacity: 0.65;
+.user-username {
+    margin-top: 3px;
+
+    color: #8f9ba8;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.welcome {
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-    background: var(--tg-theme-secondary-bg-color, #202b36);
-}
 
-.welcome h2 {
-    font-size: 20px;
-    margin-bottom: 7px;
-}
+/* =========================
+   КНОПКИ ВВЕРХУ
+   ========================= */
 
-.welcome p {
-    font-size: 14px;
-    opacity: 0.65;
-}
-
-.card {
+.top-buttons {
     display: flex;
     align-items: center;
-    padding: 17px;
-    margin-bottom: 12px;
-    border-radius: 18px;
-    background: var(--tg-theme-secondary-bg-color, #202b36);
-    cursor: pointer;
-    transition: transform 0.15s ease, background 0.15s ease;
+
+    gap: 6px;
 }
 
-.card:active {
-    transform: scale(0.97);
-}
+.top-button {
+    width: 38px;
+    height: 38px;
 
-.icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--tg-theme-button-color, #2ea6ff);
-    font-size: 22px;
-    margin-right: 13px;
+
+    border-radius: 11px;
+
+    background: #253445;
+    color: white;
+
+    font-size: 17px;
+
+    transition: transform 0.15s, background 0.15s;
 }
 
-.card h2 {
-    font-size: 17px;
+.top-button:hover {
+    background: #304256;
+}
+
+
+/* =========================
+   СТРАНИЦЫ
+   ========================= */
+
+.page {
+    width: 100%;
+
+    animation: pageAppear 0.25s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   ГЛАВНАЯ
+   ========================= */
+
+.home-content {
+    min-height: 72vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding-bottom: 40px;
+}
+
+.game-icon {
+    font-size: 78px;
+
+    line-height: 1;
+
+    margin-bottom: 20px;
+
+    animation: floating 2.5s ease-in-out infinite;
+}
+
+.home-content h1 {
+    margin: 0;
+
+    font-size: 31px;
+    line-height: 1.15;
+}
+
+.home-description {
+    margin: 13px 0 30px;
+
+    color: #9da9b5;
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   КНОПКА НАЧАТЬ
+   ========================= */
+
+.play-button {
+    width: 245px;
+    height: 66px;
+
+    border-radius: 19px;
+
+    background: #4f91d0;
+    color: white;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 25px rgba(79, 145, 208, 0.25);
+
+    transition:
+        transform 0.15s,
+        background 0.15s;
+}
+
+.play-button:hover {
+    background: #5b9ddd;
+}
+
+
+/* =========================
+   ЗАГОЛОВОК РАНДОМАЙЗЕРА
+   ========================= */
+
+.game-header {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 18px;
+}
+
+.game-header h2 {
+    margin: 0;
+
+    font-size: 21px;
+}
+
+
+/* =========================
+   КНОПКА НАЗАД
+   ========================= */
+
+.back-button {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #253445;
+    color: white;
+
+    font-size: 25px;
+
+    transition: transform 0.15s;
+}
+
+
+/* =========================
+   ПОЛЕ ВВОДА
+   ========================= */
+
+.input-block {
+    width: 100%;
+
+    margin-bottom: 10px;
+}
+
+.input-row {
+    width: 100%;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+#optionInput {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 14px;
+
+    background: #253445;
+    color: white;
+
+    font-size: 16px;
+}
+
+#optionInput::placeholder {
+    color: #84909d;
+}
+
+#optionInput:focus {
+    box-shadow: 0 0 0 2px rgba(79, 145, 208, 0.4);
+}
+
+.add-button {
+    width: 52px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: #4f91d0;
+    color: white;
+
+    font-size: 28px;
+    font-weight: 400;
+}
+
+
+/* =========================
+   СПИСОК ВАРИАНТОВ
+   ========================= */
+
+.options-list {
+    width: 100%;
+
+    display: flex;
+
+    gap: 7px;
+
+    overflow-x: auto;
+
+    padding: 3px 1px 10px;
+
+    min-height: 47px;
+
+    scrollbar-width: none;
+}
+
+.options-list::-webkit-scrollbar {
+    display: none;
+}
+
+.empty-text {
+    width: 100%;
+
+    padding: 8px 2px;
+
+    color: #9da9b5;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* Один вариант */
+
+.player {
+    flex-shrink: 0;
+
+    max-width: 190px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 10px;
+
+    border-radius: 12px;
+
+    background: #253445;
+
+    color: white;
+
+    font-size: 14px;
+}
+
+.player span {
+    max-width: 145px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+.remove-player {
+    flex-shrink: 0;
+
+    padding: 0;
+
+    background: transparent;
+
+    color: #ff6b6b;
+
+    font-size: 19px;
+
+    line-height: 1;
+}
+
+
+/* =========================
+   КОЛЕСО
+   ========================= */
+
+.wheel-container {
+    position: relative;
+
+    width: 320px;
+    height: 340px;
+
+    margin: 3px auto 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#wheel {
+    display: block;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    transform: rotate(0deg);
+
+    will-change: transform;
+
+    filter:
+        drop-shadow(0 7px 15px rgba(0, 0, 0, 0.25));
+}
+
+
+/* Стрелка */
+
+.pointer {
+    position: absolute;
+
+    z-index: 10;
+
+    top: -7px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-size: 35px;
+    line-height: 1;
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.7);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   РЕЗУЛЬТАТ
+   ========================= */
+
+.result {
+    width: 100%;
+
+    margin: 0 0 10px;
+
+    padding: 13px 15px;
+
+    border-radius: 15px;
+
+    background: #253445;
+
+    text-align: center;
+
+    animation: resultAppear 0.35s ease;
+}
+
+.result-small {
+    color: #9da9b5;
+
+    font-size: 13px;
+
     margin-bottom: 3px;
 }
 
-.card p {
+#winner {
+    color: white;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   КНОПКА КРУТИТЬ
+   ========================= */
+
+.spin-button {
+    width: 100%;
+    height: 58px;
+
+    border-radius: 17px;
+
+    background: #4f91d0;
+    color: white;
+
+    font-size: 19px;
+    font-weight: 800;
+
+    transition:
+        transform 0.15s,
+        opacity 0.2s,
+        background 0.2s;
+}
+
+.spin-button:hover:not(:disabled) {
+    background: #5b9ddd;
+}
+
+.spin-button:disabled {
+    opacity: 0.38;
+
+    cursor: not-allowed;
+}
+
+.spin-button:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   ПРОФИЛЬ
+   ========================= */
+
+.subpage {
+    width: 100%;
+
+    text-align: center;
+}
+
+.big-avatar {
+    width: 100px;
+    height: 100px;
+
+    margin: 25px auto 15px;
+
+    border-radius: 50%;
+
+    background: #4f91d0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 40px;
+    font-weight: bold;
+
+    overflow: hidden;
+}
+
+.big-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.subpage h2 {
+    margin: 10px 0 5px;
+
+    font-size: 24px;
+}
+
+.subpage > p {
+    margin: 0;
+
+    color: #9da9b5;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   КАРТОЧКА ID
+   ========================= */
+
+.info-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding: 17px;
+
+    border-radius: 17px;
+
+    background: #253445;
+
+    text-align: left;
+}
+
+.info-card > div:first-child {
+    font-size: 25px;
+}
+
+.info-card span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #9da9b5;
+
     font-size: 13px;
-    opacity: 0.6;
 }
 
-.arrow {
-    margin-left: auto;
-    font-size: 30px;
-    opacity: 0.4;
+.info-card strong {
+    font-size: 16px;
 }
 
-.container > * {
-    animation: appear 0.4s ease both;
+
+/* =========================
+   НАСТРОЙКИ
+   ========================= */
+
+.settings-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    border-radius: 17px;
+
+    background: #253445;
+
+    text-align: left;
 }
 
-@keyframes appear {
+.settings-card strong {
+    font-size: 16px;
+}
+
+.settings-card p {
+    margin: 5px 0 0;
+
+    color: #9da9b5;
+
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+
+/* =========================
+   ПЕРЕКЛЮЧАТЕЛЬ
+   ========================= */
+
+.switch {
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+.switch input {
+    display: none;
+}
+
+.switch span {
+    display: block;
+
+    position: relative;
+
+    width: 50px;
+    height: 28px;
+
+    border-radius: 20px;
+
+    background: #56616d;
+
+    transition: background 0.2s;
+}
+
+.switch span::after {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    transition: transform 0.2s;
+}
+
+.switch input:checked + span {
+    background: #4f91d0;
+}
+
+.switch input:checked + span::after {
+    transform: translateX(22px);
+}
+
+
+/* =========================
+   ПОМОЩЬ
+   ========================= */
+
+.help-card {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    border-radius: 17px;
+
+    background: #253445;
+
+    text-align: left;
+}
+
+.help-card h3 {
+    margin: 0 0 14px;
+
+    font-size: 18px;
+}
+
+.help-card p {
+    margin: 0;
+
+    color: #c5cbd2;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================
+   АНИМАЦИИ
+   ========================= */
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes pageAppear {
+
     from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(5px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes resultAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   МАЛЕНЬКИЕ ТЕЛЕФОНЫ
+   ========================= */
+
+@media (max-width: 380px) {
+
+    .app {
+        padding: 13px;
+    }
+
+    .user-name {
+        max-width: 140px;
+    }
+
+    .top-button {
+        width: 35px;
+        height: 35px;
+
+        font-size: 16px;
+    }
+
+    .game-icon {
+        font-size: 68px;
+    }
+
+    .home-content h1 {
+        font-size: 28px;
+    }
+
+    .play-button {
+        width: 220px;
+        height: 62px;
+    }
+
+    .wheel-container {
+        width: 285px;
+        height: 305px;
+    }
+
+    #wheel {
+        width: 285px;
+        height: 285px;
+    }
+}
+
+
+/* =========================
+   ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ
+   ========================= */
+
+@media (max-width: 330px) {
+
+    .top-buttons {
+        gap: 3px;
+    }
+
+    .top-button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .avatar {
+        width: 43px;
+        height: 43px;
+    }
+
+    .user-name {
+        max-width: 110px;
+    }
+
+    .wheel-container {
+        transform: scale(0.9);
+        transform-origin: top center;
+
+        margin-bottom: -30px;
     }
 }

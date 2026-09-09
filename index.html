@@ -1,12 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Мой Mini App</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Randomizer</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -15,103 +16,354 @@
 
 <body>
 
-    <div class="container">
+    <div class="app">
 
-        <!-- Главная страница -->
-        <div id="homePage">
+        <!-- Верхняя панель -->
 
-            <div class="profile-header">
-                <div class="avatar" id="avatar">?</div>
+        <header class="top-bar">
 
-                <div class="user-info">
-                    <h1 id="name">Загрузка...</h1>
-                    <p id="username">@username</p>
-                </div>
-            </div>
+            <div class="user-block">
 
-            <div class="welcome">
-                <h2>👋 Добро пожаловать!</h2>
-                <p>Это твой Telegram Mini App</p>
-            </div>
-
-            <div class="card" onclick="openProfile()">
-                <div class="icon">👤</div>
-
-                <div>
-                    <h2>Профиль</h2>
-                    <p>Информация о тебе</p>
+                <div class="avatar" id="avatar">
+                    ?
                 </div>
 
-                <div class="arrow">›</div>
-            </div>
+                <div class="user-data">
 
-            <div class="card" onclick="openSettings()">
-                <div class="icon">⚙️</div>
+                    <div class="user-name" id="name">
+                        Загрузка...
+                    </div>
 
-                <div>
-                    <h2>Настройки</h2>
-                    <p>Настройки приложения</p>
+                    <div class="user-username" id="username">
+                        @username
+                    </div>
+
                 </div>
 
-                <div class="arrow">›</div>
             </div>
 
-            <div class="card" onclick="openHelp()">
-                <div class="icon">❓</div>
 
-                <div>
-                    <h2>Помощь</h2>
-                    <p>Если что-то не работает</p>
+            <div class="top-buttons">
+
+                <button class="top-button" onclick="openProfile()">
+                    👤
+                </button>
+
+                <button class="top-button" onclick="openSettings()">
+                    ⚙️
+                </button>
+
+                <button class="top-button" onclick="openHelp()">
+                    ❓
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Главная -->
+
+        <main id="homePage" class="page">
+
+            <div class="home-content">
+
+                <div class="game-icon">
+                    🎲
                 </div>
 
-                <div class="arrow">›</div>
+                <h1>
+                    Рандомайзер
+                </h1>
+
+                <p class="home-description">
+                    Не знаешь, что выбрать?<br>
+                    Добавь варианты — решим случайно.
+                </p>
+
+                <button
+                    class="play-button"
+                    onclick="openGame()"
+                >
+                    🎡 НАЧАТЬ
+                </button>
+
             </div>
 
-        </div>
+        </main>
 
 
-        <!-- Страница профиля -->
-        <div id="profilePage" style="display: none;">
+        <!-- Рандомайзер -->
 
-            <div class="profile-header">
-                <div class="avatar" id="profileAvatar">?</div>
+        <main id="gamePage" class="page hidden">
 
-                <div class="user-info">
-                    <h1 id="profileName">Пользователь</h1>
-                    <p id="profileUsername">@username</p>
+            <div class="game-header">
+
+                <button
+                    class="back-button"
+                    onclick="backHome()"
+                >
+                    ←
+                </button>
+
+                <h2>
+                    🎲 Рандомайзер
+                </h2>
+
+            </div>
+
+
+            <!-- Добавление вариантов -->
+
+            <div class="input-block">
+
+                <div class="input-row">
+
+                    <input
+                        type="text"
+                        id="optionInput"
+                        placeholder="Введите вариант..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        onclick="addOption()"
+                        class="add-button"
+                    >
+                        +
+                    </button>
+
                 </div>
+
             </div>
 
-            <div class="welcome">
-                <h2>👤 Профиль</h2>
-                <p>Информация о твоём Telegram аккаунте</p>
-            </div>
 
-            <div class="card">
-                <div class="icon">🆔</div>
+            <!-- Список вариантов -->
 
-                <div>
-                    <h2>Telegram ID</h2>
-                    <p id="userId">Загрузка...</p>
+            <div
+                id="optionsList"
+                class="options-list"
+            >
+
+                <div class="empty-text">
+                    Добавь минимум 2 варианта
                 </div>
+
             </div>
 
-            <div class="card" onclick="backHome()">
-                <div class="icon">←</div>
 
-                <div>
-                    <h2>Назад</h2>
-                    <p>Вернуться на главный экран</p>
+            <!-- Колесо -->
+
+            <div class="wheel-container">
+
+                <div class="pointer">
+                    ▼
                 </div>
+
+                <canvas
+                    id="wheel"
+                    width="320"
+                    height="320"
+                ></canvas>
+
             </div>
 
-        </div>
+
+            <!-- Результат -->
+
+            <div
+                id="result"
+                class="result hidden"
+            >
+
+                <div class="result-small">
+                    Выпал вариант
+                </div>
+
+                <div id="winner">
+                    —
+                </div>
+
+            </div>
+
+
+            <!-- Кнопка -->
+
+            <button
+                id="spinButton"
+                class="spin-button"
+                onclick="spinWheel()"
+                disabled
+            >
+                🎡 КРУТИТЬ
+            </button>
+
+        </main>
+
+
+        <!-- Профиль -->
+
+        <main
+            id="profilePage"
+            class="page hidden"
+        >
+
+            <div class="subpage">
+
+                <button
+                    class="back-button"
+                    onclick="backHome()"
+                >
+                    ←
+                </button>
+
+                <div
+                    class="big-avatar"
+                    id="profileAvatar"
+                >
+                    ?
+                </div>
+
+                <h2 id="profileName">
+                    Пользователь
+                </h2>
+
+                <p id="profileUsername">
+                    @username
+                </p>
+
+                <div class="info-card">
+
+                    <div>
+                        🆔
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Telegram ID
+                        </span>
+
+                        <strong id="userId">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- Настройки -->
+
+        <main
+            id="settingsPage"
+            class="page hidden"
+        >
+
+            <div class="subpage">
+
+                <button
+                    class="back-button"
+                    onclick="backHome()"
+                >
+                    ←
+                </button>
+
+                <h2>
+                    ⚙️ Настройки
+                </h2>
+
+                <div class="settings-card">
+
+                    <div>
+
+                        <strong>
+                            Вибрация
+                        </strong>
+
+                        <p>
+                            Вибрация при выборе варианта
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="vibrationToggle"
+                            checked
+                        >
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- Помощь -->
+
+        <main
+            id="helpPage"
+            class="page hidden"
+        >
+
+            <div class="subpage">
+
+                <button
+                    class="back-button"
+                    onclick="backHome()"
+                >
+                    ←
+                </button>
+
+                <h2>
+                    ❓ Помощь
+                </h2>
+
+                <div class="help-card">
+
+                    <h3>
+                        Как пользоваться?
+                    </h3>
+
+                    <p>
+                        Введи любые варианты, между которыми
+                        не можешь выбрать.
+                        <br><br>
+
+                        Это могут быть имена, игры, фильмы,
+                        числа, еда — вообще что угодно.
+                        <br><br>
+
+                        Добавь варианты и нажми
+                        «Крутить».
+                        <br><br>
+
+                        Колесо случайно выберет один
+                        из них.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </main>
 
     </div>
+
 
     <script src="script.js"></script>
 
 </body>
 
 </html>
-```
